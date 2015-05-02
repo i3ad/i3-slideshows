@@ -1,0 +1,44 @@
+#i3sl_meta{
+	overflow: hidden;
+}
+
+#i3sl_meta p{
+	clear: both;
+}
+
+.i3sl-row-title{
+	display: block;
+	float: left;
+	width: 200px;
+}
+
+.i3sl-row-content{
+	float: left;
+	padding-bottom: 1em;
+}
+
+.i3sl-radio-group{
+	display: inline-block;
+	text-align: center;
+}
+
+.i3sl-row-desc{
+	font-style: italic;
+}
+
+.i3sl-row-content label{
+	display: block;
+	line-height: 1.75em;
+}
+
+label.meta-radio-img > input{ /* HIDE RADIO */
+  visibility: hidden;
+  position: absolute;
+}
+label.meta-radio-img > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label.meta-radio-img > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #0073AA;
+}

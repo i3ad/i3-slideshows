@@ -1,0 +1,41 @@
+
+.i3-slideshow .slides > li {
+	position: relative;
+}
+
+.i3-slideshow .slides > li a.slideurl {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/**
+ * Default slide-caption styling
+ **/
+.i3-slideshow .slide-caption {
+	position: absolute;
+	padding: 1em;
+	max-width: 50%;
+	bottom: 1em;
+	background: black;
+	color: white;
+}
+
+.i3-slideshow .slide-caption.content-left {
+	left: 1em;
+}
+
+.i3-slideshow .slide-caption.content-center {
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+
+.i3-slideshow .slide-caption.content-right {
+	right: 1em;
+}
+
+.i3-slideshow .slide-caption *:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
