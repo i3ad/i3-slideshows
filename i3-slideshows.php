@@ -4,7 +4,7 @@ Plugin Name: i3 Slideshows
 Plugin URI: 
 Description: 
 Author: Mo
-Version: 1.0
+Version: 1.0.1
 Author URI: 
 Text Domain: i3sl-plugin
 Domain Path: /lang
@@ -332,16 +332,18 @@ function i3sl_template($atts) {
 		<ul class="slides">
 
             <?php foreach ( $myposts as $post ) : 
-            setup_postdata( $post ); ?>
+            setup_postdata( $post ); 
 
-    			<li <?php post_class(); ?>>
+                // Current post ID
+                $slide_ID = get_the_ID(); ?>
+
+                <li class="slide slide-<?php echo $slide_ID; ?>" >
 
                     <?php // If posttype is "i3_slide", use this template
-                    if ($type == 'i3_slide') { 
+                    if ($type == 'i3_slide') { ?>
 
+                        <?php 
                         /* Get all meta variables */
-                        // Post ID
-                        $slide_ID = get_the_ID();
                         // Slide URL
                         $slide_url = get_post_meta( $post->ID, 'meta-text', true );
                         // Slide URL target
@@ -359,15 +361,15 @@ function i3sl_template($atts) {
                         ?>
 
                         <style type="text/css">
-                            .i3-slideshow .post-<?php echo $slide_ID; ?> .slide-caption {
-                                background: <?php echo $slide_bgcolor; ?>;
-                                color: <?php echo $slide_color; ?>;
-                            }
-                            .i3-slideshow .post-<?php echo $slide_ID; ?> .slide-caption a { color: <?php echo $slide_refcolor; ?>; }
-                            .i3-slideshow .post-<?php echo $slide_ID; ?> .slide-caption a:hover { color: <?php echo $slide_hovcolor; ?>; }
+                            .i3-slideshow .slide-<?php echo $slide_ID; ?> .slide-caption { background: <?php echo $slide_bgcolor; ?>; }
+                            .i3-slideshow .slide-<?php echo $slide_ID; ?> .slide-caption,
+                            .i3-slideshow .slide-<?php echo $slide_ID; ?> .slide-caption p { color: <?php echo $slide_color; ?>; }
+                            .i3-slideshow .slide-<?php echo $slide_ID; ?> .slide-caption a { color: <?php echo $slide_refcolor; ?>; }
+                            .i3-slideshow .slide-<?php echo $slide_ID; ?> .slide-caption a:hover { color: <?php echo $slide_hovcolor; ?>; }
                         </style>
 
-                        <?php if ( $slide_layout !== 'content-none' && $post->post_content !== '' ){ // If layout is "content-none", dont display the caption ?>
+                        <?php // If layout is "content-none" / is there is no content, dont display the caption
+                        if ( $slide_layout !== 'content-none' && $post->post_content !== '' ){ ?>
                             <div class="slide-caption <?php echo $slide_layout; ?>">
                                 <?php the_content(); ?>
                             </div>   
@@ -382,6 +384,7 @@ function i3sl_template($atts) {
                             <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'full' ); } ?>
                         <?php }; ?>
 
+                    </li>
                     <?php // If posttype is anything else, use this template instead
                     } else { ?>
 

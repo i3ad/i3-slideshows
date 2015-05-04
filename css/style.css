@@ -1,8 +1,8 @@
+/**
+ * Basic slider styles
+ **/
 
-.i3-slideshow .slides > li {
-	position: relative;
-}
-
+/* Spans the slide-link over the whole slide */
 .i3-slideshow .slides > li a.slideurl {
 	display: block;
 	width: 100%;
@@ -12,6 +12,8 @@
 /**
  * Default slide-caption styling
  **/
+
+ /* Caption basic styling */
 .i3-slideshow .slide-caption {
 	position: absolute;
 	padding: 1em;
@@ -21,21 +23,66 @@
 	color: white;
 }
 
-.i3-slideshow .slide-caption.content-left {
-	left: 1em;
-}
+/* Caption "content-left" styling */
+.i3-slideshow .slide-caption.content-left { left: 1em; }
 
+/* Caption "content-right" styling */
+.i3-slideshow .slide-caption.content-right { right: 1em; }
+
+/* Caption "content-center" styling */
 .i3-slideshow .slide-caption.content-center {
 	margin: 0 auto;
 	left: 0;
 	right: 0;
 }
 
-.i3-slideshow .slide-caption.content-right {
-	right: 1em;
-}
-
+/* Disable bottom padding and margin on last element in caption */
 .i3-slideshow .slide-caption *:last-child {
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
+
+/**
+ * Theme compatibility fixes
+ *
+ * These styles try to fix issus which some themes may have.
+ **/
+
+/* Disable list-icons and margin on all list-elements inside .i3-slideshows */
+.i3-slideshow ul, .i3-slideshow ul li,
+.i3-slideshow ol, .i3-slideshow ol li,
+.i3-slideshow ul.slides, .i3-slideshow ul.slides li,
+.i3-slideshow ol.flex-control-nav, .i3-slideshow ol.flex-control-nav li,
+.i3-slideshow ul.flex-direction-nav, .i3-slideshow ul.flex-direction-nav li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+/* Fix margins of the pageination */
+.i3-slideshow ol.flex-control-nav li {
+    margin: 0 6px;
+}
+/* Fixing the next and previous navigation */
+.flex-direction-nav a.flex-next,
+.flex-direction-nav a.flex-prev {
+	border-bottom: 0; /* Some themes deploy a bottom-border */
+    line-height: 40px; /* Line-height to prevent cutting */
+}
+/* Dont animate the arrow, just change the opacity */
+.flex-direction-nav a.flex-next,
+.flexslider:hover .flex-direction-nav a.flex-next {
+	right: 0.5em;
+}
+/* Dont animate the arrow, just change the opacity */
+.flex-direction-nav a.flex-prev,
+.flexslider:hover .flex-direction-nav a.flex-prev {
+	left: 0.5em;
+}
+/* Display margin on all slideshow images */
+.i3-slideshow img.wp-post-image {
+	margin: 0;
+}
+
+/**
+ * END Theme compatibility fixes
+ **/
